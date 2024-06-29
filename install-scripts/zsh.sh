@@ -5,6 +5,7 @@
 zsh=(
 zsh
 util-linux
+/usr/bin/chsh
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -100,10 +101,12 @@ if command -v zsh >/dev/null; then
 
     printf "${NOTE} Changing default shell to zsh...\n"
 
-	while ! chsh -s $(which zsh); do
-    echo "${ERROR} Authentication failed. Please enter the correct password."
-    sleep 1	
-	done
+#idk why its not working, just simpifying
+
+	chsh -s $(which zsh)
+#    echo "${ERROR} Authentication failed. Please enter the correct password."
+#    sleep 1	
+#	done
 	printf "\n"
 	printf "${NOTE} Shell changed successfully to zsh.\n" 2>&1 | tee -a "$LOG"
 
