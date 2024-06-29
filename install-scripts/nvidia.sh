@@ -3,10 +3,11 @@
 # Nvidia Packages and other nvidia stuff #
 
 nvidia_pkg=(
-  akmod-nvidia
-  xorg-x11-drv-nvidia-cuda
-  libva
-  libva-nvidia-driver
+   apt-scripts-nvidia
+#  akmod-nvidia
+#  xorg-x11-drv-nvidia-cuda
+#  libva
+#  libva-nvidia-driver
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -35,6 +36,7 @@ printf "${YELLOW} Installing Nvidia packages...\n"
     install_package "$NVIDIA" 2>&1 | tee -a "$LOG"
   done
 
+apt-get install-nvidia -y
 
 printf "${YELLOW} nvidia-stuff to /etc/default/grub..."
 
@@ -46,12 +48,12 @@ if grep -q "GRUB_CMDLINE_LINUX.*$additional_options" /etc/default/grub; then
 	echo "GRUB_CMDLINE_LINUX already contains the additional options" 2>&1 | tee -a "$LOG"
 else
 	# Append the additional options to GRUB_CMDLINE_LINUX
-	sudo sed -i "s/GRUB_CMDLINE_LINUX=\"/GRUB_CMDLINE_LINUX=\"$additional_options /" /etc/default/grub
+	sed -i "s/GRUB_CMDLINE_LINUX=\"/GRUB_CMDLINE_LINUX=\"$additional_options /" /etc/default/grub
     echo "Added the additional options to GRUB_CMDLINE_LINUX" 2>&1 | tee -a "$LOG"
 fi
 
 # Update GRUB configuration
-sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+grub-mkconfig -o /boot/grub2/grub.cfg
 
 echo "${NOTE} Nvidia DRM modeset and additional options have been added to /etc/default/grub. Please reboot for changes to take effect." 2>&1 | tee -a "$LOG"
 
