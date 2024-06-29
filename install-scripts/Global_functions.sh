@@ -29,7 +29,7 @@ install_package() {
 #  else
     # Package not installed
     echo -e "${NOTE} Installing $1 ..."
-    apt-get install -y "$1" 2>&1 | tee -a "$LOG"
+    sudo apt-get install -y "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is installed - skipping because i'm lazy
 #    if sudo dnf list installed "$1" &>> /dev/null ; then
 #      echo -e "\e[1A\e[K${OK} $1 was installed."
@@ -47,7 +47,7 @@ uninstall_package() {
 #  if sudo dnf list installed "$1" &>> /dev/null ; then
     # Package is installed
     echo -e "${NOTE} Uninstalling $1 ..."
-    apt-get remove -y "$1" 2>&1 | tee -a "$LOG"
+    sudo apt-get remove -y "$1" 2>&1 | tee -a "$LOG"
     # Making sure package is uninstalled
 #    if ! sudo dnf list installed "$1" &>> /dev/null ; then
 #      echo -e "\e[1A\e[K${OK} $1 was uninstalled."

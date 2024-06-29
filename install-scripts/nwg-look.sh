@@ -54,7 +54,7 @@ if git clone --recursive -b "$nwg_tag" --depth 1 https://github.com/nwg-piotr/nw
     cd nwg-look || exit 1
     # Build nwg-look
     make build
-    if make install 2>&1 | tee -a "$MLOG"; then
+    if sudo make install 2>&1 | tee -a "$MLOG"; then
         printf "${OK} nwg-look installed successfully.\n" 2>&1 | tee -a "$MLOG"
     else
         echo -e "${ERROR} Installation failed for nwg-look" 2>&1 | tee -a "$MLOG"

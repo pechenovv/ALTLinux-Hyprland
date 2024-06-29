@@ -36,9 +36,9 @@ printf "${YELLOW} Installing Nvidia packages...\n"
     install_package "$NVIDIA" 2>&1 | tee -a "$LOG"
   done
 
-apt-get install-nvidia -y
-nvidia-install-driver
-make-initrd
+sudo apt-get install-nvidia -y
+sudo nvidia-install-driver
+sudo make-initrd
 
 printf "${YELLOW} nvidia-stuff to /etc/default/grub..."
 
@@ -55,7 +55,7 @@ else
 fi
 
 # Update GRUB configuration
-grub-mkconfig -o /boot/grub2/grub.cfg
+sudo grub-mkconfig -o /boot/grub2/grub.cfg
 
 echo "${NOTE} Nvidia DRM modeset and additional options have been added to /etc/default/grub. Please reboot for changes to take effect." 2>&1 | tee -a "$LOG"
 

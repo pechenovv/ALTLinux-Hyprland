@@ -44,10 +44,10 @@ while true; do
     case "$choice" in
         [Yy]*)
             if [ -d "pokemon-colorscripts" ]; then
-                cd pokemon-colorscripts && git pull && ./install.sh && cd ..
+                cd pokemon-colorscripts && git pull && sudo ./install.sh && cd ..
             else
                 git clone https://gitlab.com/phoneybadger/pokemon-colorscripts.git &&
-                cd pokemon-colorscripts && ./install.sh && cd ..
+                cd pokemon-colorscripts && sudo ./install.sh && cd ..
             fi
             sed -i '/#pokemon-colorscripts --no-title -s -r/s/^#//' assets/.zshrc >> "$LOG" 2>&1
 			echo "${NOTE} Pokemon Installation process completed" 2>&1 | tee -a "$LOG"

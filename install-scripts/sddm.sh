@@ -44,17 +44,17 @@ done
 #done
 
 printf " Activating sddm service........\n"
-systemctl set-default graphical.target 2>&1 | tee -a "$LOG"
-systemctl enable sddm.service 2>&1 | tee -a "$LOG"
+sudo systemctl set-default graphical.target 2>&1 | tee -a "$LOG"
+sudo systemctl enable sddm.service 2>&1 | tee -a "$LOG"
 
 # Set up SDDM
 echo -e "${NOTE} Setting up the login screen."
 sddm_conf_dir=/etc/sddm.conf.d
-[ ! -d "$sddm_conf_dir" ] && { printf "$CAT - $sddm_conf_dir not found, creating...\n"; mkdir -p "$sddm_conf_dir" 2>&1 | tee -a "$LOG"; }
+[ ! -d "$sddm_conf_dir" ] && { printf "$CAT - $sddm_conf_dir not found, creating...\n"; sudo mkdir -p "$sddm_conf_dir" 2>&1 | tee -a "$LOG"; }
 
 wayland_sessions_dir=/usr/share/wayland-sessions
-[ ! -d "$wayland_sessions_dir" ] && { printf "$CAT - $wayland_sessions_dir not found, creating...\n"; mkdir -p "$wayland_sessions_dir" 2>&1 | tee -a "$LOG"; }
-cp assets/hyprland.desktop "$wayland_sessions_dir/" 2>&1 | tee -a "$LOG"
+[ ! -d "$wayland_sessions_dir" ] && { printf "$CAT - $wayland_sessions_dir not found, creating...\n"; sudo mkdir -p "$wayland_sessions_dir" 2>&1 | tee -a "$LOG"; }
+sudo cp assets/hyprland.desktop "$wayland_sessions_dir/" 2>&1 | tee -a "$LOG"
 
 clear
     
@@ -83,12 +83,12 @@ while [ "$valid_input" != true ]; do
       done
 
       if [ ! -d "/usr/share/sddm/themes" ]; then
-        mkdir -p /usr/share/sddm/themes
+        sudo mkdir -p /usr/share/sddm/themes
         echo -e "\e[1A\e[K${OK} - Directory '/usr/share/sddm/themes' created." 2>&1 | tee -a "$LOG"
       fi
 
-      mv simple-sddm-2 /usr/share/sddm/themes/
-      echo -e "[Theme]\nCurrent=simple-sddm-2" | tee "$sddm_conf_dir/theme.conf.user" &>> "$LOG"
+      sudo mv simple-sddm-2 /usr/share/sddm/themes/
+      echo -e "[Theme]\nCurrent=simple-sddm-2" | sudo tee "$sddm_conf_dir/theme.conf.user" &>> "$LOG"
     else
       echo -e "\e[1A\e[K${ERROR} - Failed to clone the theme repository. Please check your internet connection" | tee -a "$LOG" >&2
     fi
