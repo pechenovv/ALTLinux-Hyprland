@@ -24,8 +24,8 @@ source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_rog.log"
 
 # Adding COPR for ASUS ROG
-sudo dnf copr enable -y lukenukem/asus-linux
-sudo dnf update
+#sudo dnf copr enable -y lukenukem/asus-linux
+#sudo dnf update
 
 
 ### Install software for Asus ROG laptops ###
