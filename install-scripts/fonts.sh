@@ -3,14 +3,14 @@
 # FONTS #
 
 fonts=(
-adobe-source-code-pro-fonts
-fira-code-fonts
-fontawesome-fonts-all
-google-droid-sans-fonts
-google-noto-sans-cjk-fonts
-google-noto-color-emoji-fonts
-google-noto-emoji-fonts
-jetbrains-mono-fonts
+fonts-otf-adobe-source-code-pro
+fonts-ttf-fira-code
+fonts-otf-fontawesome5-all
+fonts-ttf-google-droid-sans
+fonts-ttf-google-noto
+fonts-otf-google-noto-cjk
+fonts-ttf-google-noto-emoji
+fonts-ttf-jetbrains-mono
 )
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
