@@ -28,25 +28,25 @@ while true; do
             echo "${OK} 'input' group exists."
         else
             echo "${NOTE} 'input' group doesn't exist. Creating 'input' group..."
-            sudo groupadd input
+            groupadd input
 
             # Log the creation of the 'input' group
             echo "'input' group created" >> "$LOG"
         fi
 
-        # Add the user to the input group
-        sudo usermod -aG input "$(whoami)"
-        echo "${OK} User added to the 'input' group. Changes will take effect after you log out and log back in."
+        # Add the user to the input group - idk how to make this, script running under root
+#        usermod -aG input "$(whoami)"
+#        echo "${OK} User added to the 'input' group. Changes will take effect after you log out and log back in."
 
         # Log the addition of the user to the 'input' group
-        echo "User added to 'input' group" >> "$LOG"
-        break  # Break out of the loop if 'yes' is chosen
-    elif [[ $choice == "n" || $choice == "N" ]]; then
-        echo "${NOTE} No changes made. Exiting the script."
-        break  # Break out of the loop if 'no' is chosen
-    else
-        echo "${ERROR} Invalid choice. Please enter 'y' for yes or 'n' for no."
-    fi
+#        echo "User added to 'input' group" >> "$LOG"
+#        break  # Break out of the loop if 'yes' is chosen
+#    elif [[ $choice == "n" || $choice == "N" ]]; then
+#        echo "${NOTE} No changes made. Exiting the script."
+#        break  # Break out of the loop if 'no' is chosen
+#    else
+#        echo "${ERROR} Invalid choice. Please enter 'y' for yes or 'n' for no."
+#    fi
 done
 
 clear
