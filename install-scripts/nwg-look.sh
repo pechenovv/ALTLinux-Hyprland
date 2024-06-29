@@ -3,15 +3,19 @@
 # NWG-LOOK (GTK-Settings) - an lxappearance like #
 
 nwg_look=(
+#maybe its needed
+nwg-launchers
 golang
-gtk3
-gtk3-devel
-cairo-devel
-glib-devel
+# i hope libgtk+3-devel present all what needed
+#gtk3
+libgtk+3-devel
+libcairo-devel
+glib2-devel
 )
 
 # specific tags to download
 # for fedora 38 & 39, change this tag to v0.2.6
+#idk how it will work on alt
 nwg_tag="v0.2.7"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
@@ -50,7 +54,7 @@ if git clone --recursive -b "$nwg_tag" --depth 1 https://github.com/nwg-piotr/nw
     cd nwg-look || exit 1
     # Build nwg-look
     make build
-    if sudo make install 2>&1 | tee -a "$MLOG"; then
+    if make install 2>&1 | tee -a "$MLOG"; then
         printf "${OK} nwg-look installed successfully.\n" 2>&1 | tee -a "$MLOG"
     else
         echo -e "${ERROR} Installation failed for nwg-look" 2>&1 | tee -a "$MLOG"
