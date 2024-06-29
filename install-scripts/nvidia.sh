@@ -37,6 +37,8 @@ printf "${YELLOW} Installing Nvidia packages...\n"
   done
 
 apt-get install-nvidia -y
+nvidia-install-driver
+make-initrd
 
 printf "${YELLOW} nvidia-stuff to /etc/default/grub..."
 
