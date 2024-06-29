@@ -6,7 +6,8 @@ blue=(
 bluez
 bluez-tools
 blueman
-python3-cairo
+python3-module-cairosvg
+python3-module-cairocffi
 )
 
 
@@ -33,6 +34,6 @@ printf "${NOTE} Installing Bluetooth Packages...\n"
   done
 
 printf " Activating Bluetooth Services...\n"
-sudo systemctl enable --now bluetooth.service 2>&1 | tee -a "$LOG"
+systemctl enable --now bluetooth.service 2>&1 | tee -a "$LOG"
 
 clear
