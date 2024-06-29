@@ -50,7 +50,7 @@ if grep -q "GRUB_CMDLINE_LINUX.*$additional_options" /etc/default/grub; then
 	echo "GRUB_CMDLINE_LINUX already contains the additional options" 2>&1 | tee -a "$LOG"
 else
 	# Append the additional options to GRUB_CMDLINE_LINUX
-	sed -i "s/GRUB_CMDLINE_LINUX=\"/GRUB_CMDLINE_LINUX=\"$additional_options /" /etc/default/grub
+	sudo sed -i "s/GRUB_CMDLINE_LINUX=\"/GRUB_CMDLINE_LINUX=\"$additional_options /" /etc/default/grub
     echo "Added the additional options to GRUB_CMDLINE_LINUX" 2>&1 | tee -a "$LOG"
 fi
 
