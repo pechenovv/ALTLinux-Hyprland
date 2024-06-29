@@ -17,31 +17,39 @@ hypr_package=(
   git
   grim
   gvfs
-  gvfs-mtp
+#i hope its not important
+#  gvfs-mtp
   ImageMagick
   jq
   inxi
   kitty
-  kvantum
+  Kvantum
   nano
-  network-manager-applet
+  NetworkManager-applet-gtk
   openssl
   pamixer
   pavucontrol
-  pipewire-alsa
-  pipewire-utils
+# pipewire pkg present all what are needed
+#  pipewire-alsa
+#  pipewire-utils
+  pipewire
   playerctl
   polkit-gnome
-  python3-requests
-  python3-pip
-  python3-pyquery
+  python3-module-requests
+  python3-module-pip
+  python3-module-pyquery
   qt5ct
   qt6ct
-  qt6-qtsvg
-  rofi-wayland
+# not builded for alt
+#  qt6-qtsvg
+#rofi pkg in sisyphus provide wayland support
+  rofi
   slurp
-  swappy
-  SwayNotificationCenter
+# maybe hyprshot can replace this
+#  swappy
+  hyprshot
+# idk how to replace this
+#  SwayNotificationCenter
   waybar
   wget2
   wl-clipboard
@@ -61,20 +69,24 @@ hypr_package_2=(
   gnome-system-monitor
   mousepad
   mpv
-  mpv-mpris
+# i hope its not important
+#  mpv-mpris
   nvtop
   qalculate-gtk
   vim-enhanced
 )
 
 copr_packages=(
-  aylurs-gtk-shell
-  cliphist
+# not builded
+# aylurs-gtk-shell
+# not builded. i think its important
+#  cliphist
   hypridle
-  hyprlock
+# not builded
+#  hyprlock
   pamixer
-  pyprland
-  swww
+#  pyprland
+#  swww
 )
 
 # List of packages to uninstall as it conflicts with swaync or causing swaync to not function properly
