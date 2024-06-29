@@ -143,7 +143,8 @@ printf "\n"
 chmod +x install-scripts/*
 
 # Install hyprland packages
-execute_script "copr.sh"
+#it will not work in alt
+#execute_script "copr.sh"
 execute_script "00-hypr-pkgs.sh"
 execute_script "fonts.sh"
 execute_script "wallust.sh"

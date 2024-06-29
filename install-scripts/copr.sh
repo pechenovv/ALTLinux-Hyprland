@@ -6,6 +6,10 @@
 # solopasha/hyprland - most packages
 # erikreider/SwayNotificationCenter swaync
 
+
+### IT WILL NOT WORK IN ALT
+
+
 # List of COPR repositories to be added and enabled
 COPR_REPOS=(
 solopasha/hyprland

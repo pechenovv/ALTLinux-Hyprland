@@ -76,15 +76,16 @@ hypr_package_2=(
   vim-enhanced
 )
 
-copr_packages=(
+#it will not work in alt
+#copr_packages=(
 # not builded
 # aylurs-gtk-shell
 # not builded. i think its important
 #  cliphist
-  hypridle
+#  hypridle
 # not builded
 #  hyprlock
-  pamixer
+#  pamixer
 #  pyprland
 #  swww
 )
