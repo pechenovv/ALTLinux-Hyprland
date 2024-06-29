@@ -4,9 +4,9 @@
 
 sddm=(
 	sddm
-  qt6-qt5compat 
-  qt6-qtdeclarative 
-  qt6-qtsvg
+  qt6-5compat
+  qt6-declarative
+  qt6-svg
 )
 
 
@@ -35,25 +35,26 @@ for PKG2 in "${sddm[@]}"; do
 done
 
 # Check if other login managers are installed and disabling their service before enabling sddm
-for login_manager in lightdm gdm lxdm lxdm-gtk3; do
-  if sudo dnf list installed "$login_manager" &>> /dev/null; then
-    echo "Disabling $login_manager..."
-    sudo systemctl disable "$login_manager" 2>&1 | tee -a "$LOG"
-  fi
-done
+## idk how to adapt this
+#for login_manager in lightdm gdm lxdm lxdm-gtk3; do
+#  if sudo dnf list installed "$login_manager" &>> /dev/null; then
+#    echo "Disabling $login_manager..."
+#    sudo systemctl disable "$login_manager" 2>&1 | tee -a "$LOG"
+#  fi
+#done
 
 printf " Activating sddm service........\n"
-sudo systemctl set-default graphical.target 2>&1 | tee -a "$LOG"
-sudo systemctl enable sddm.service 2>&1 | tee -a "$LOG"
+systemctl set-default graphical.target 2>&1 | tee -a "$LOG"
+systemctl enable sddm.service 2>&1 | tee -a "$LOG"
 
 # Set up SDDM
 echo -e "${NOTE} Setting up the login screen."
 sddm_conf_dir=/etc/sddm.conf.d
-[ ! -d "$sddm_conf_dir" ] && { printf "$CAT - $sddm_conf_dir not found, creating...\n"; sudo mkdir -p "$sddm_conf_dir" 2>&1 | tee -a "$LOG"; }
+[ ! -d "$sddm_conf_dir" ] && { printf "$CAT - $sddm_conf_dir not found, creating...\n"; mkdir -p "$sddm_conf_dir" 2>&1 | tee -a "$LOG"; }
 
 wayland_sessions_dir=/usr/share/wayland-sessions
-[ ! -d "$wayland_sessions_dir" ] && { printf "$CAT - $wayland_sessions_dir not found, creating...\n"; sudo mkdir -p "$wayland_sessions_dir" 2>&1 | tee -a "$LOG"; }
-sudo cp assets/hyprland.desktop "$wayland_sessions_dir/" 2>&1 | tee -a "$LOG"
+[ ! -d "$wayland_sessions_dir" ] && { printf "$CAT - $wayland_sessions_dir not found, creating...\n"; mkdir -p "$wayland_sessions_dir" 2>&1 | tee -a "$LOG"; }
+cp assets/hyprland.desktop "$wayland_sessions_dir/" 2>&1 | tee -a "$LOG"
 
 clear
     
@@ -82,12 +83,12 @@ while [ "$valid_input" != true ]; do
       done
 
       if [ ! -d "/usr/share/sddm/themes" ]; then
-        sudo mkdir -p /usr/share/sddm/themes
+        mkdir -p /usr/share/sddm/themes
         echo -e "\e[1A\e[K${OK} - Directory '/usr/share/sddm/themes' created." 2>&1 | tee -a "$LOG"
       fi
 
-      sudo mv simple-sddm-2 /usr/share/sddm/themes/
-      echo -e "[Theme]\nCurrent=simple-sddm-2" | sudo tee "$sddm_conf_dir/theme.conf.user" &>> "$LOG"
+      mv simple-sddm-2 /usr/share/sddm/themes/
+      echo -e "[Theme]\nCurrent=simple-sddm-2" | tee "$sddm_conf_dir/theme.conf.user" &>> "$LOG"
     else
       echo -e "\e[1A\e[K${ERROR} - Failed to clone the theme repository. Please check your internet connection" | tee -a "$LOG" >&2
     fi
