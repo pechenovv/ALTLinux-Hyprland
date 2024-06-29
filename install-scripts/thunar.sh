@@ -4,9 +4,9 @@
 
 thunar=(
 ffmpegthumbnailer
-Thunar 
-thunar-volman 
-tumbler 
+thunar
+thunar-volman-plugin
+tumbler
 thunar-archive-plugin
 file-roller
 )
